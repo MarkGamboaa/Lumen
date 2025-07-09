@@ -1,0 +1,37 @@
+<resources>
+    <!-- App Name -->
+    <string name="app_name">Lumen</string>
+
+    <!--Titles -->
+    <string name="login_title_line1">Lumen</string>
+    <string name="login_title_line2">Light Up Your Mind</string>
+
+    <!-- Form Hints -->
+    <string name="hint_email">Enter your email</string>
+    <string name="hint_password">Enter your password</string>
+
+    <!-- Form Labels & Buttons -->
+    <string name="btn_sign_in">Sign in</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="create_account">Create Account</string>
+    <string name="next">Next</string>
+
+    <!-- Toasts & Errors (optional) -->
+    <string name="error_empty_fields">Please fill in all fields</string>
+    <string name="error_invalid_credentials">Invalid email or password</string>
+
+    <!-- Onboarding 1-->
+    <string name="private_space">Private Space</string>
+    <string name="description_text1">"Express yourself without fear or judgment."</string>
+    <string name="illustration">Illustration</string>
+
+    <!-- Onboarding 2-->
+    <string name="mood_tracker">Mood Graph</string>
+    <string name="description_text2">Track daily emotions, notice changes, and recognize patterns in your mood.</string>
+
+    <!-- Onboarding 3-->
+    <string name="search_diary">Search Diary</string>
+    <string name="description_text3">Effortlessly search your diary to relive a particular memory!</string>
+
+
+</resources>
