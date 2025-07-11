@@ -5,16 +5,23 @@
     <!--Titles -->
     <string name="login_title_line1">Lumen</string>
     <string name="login_title_line2">Light Up Your Mind</string>
+    <string name="login_title_create_account">Create Account</string>
 
     <!-- Form Hints -->
-    <string name="hint_email">Enter your email</string>
-    <string name="hint_password">Enter your password</string>
+    <string name="hint_lastname">Last name</string>
+    <string name="hint_firstName">First name</string>
+    <string name="hint_username">User name</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm Password</string>
+
 
     <!-- Form Labels & Buttons -->
     <string name="btn_sign_in">Sign in</string>
+    <string name="btn_sign_up">Sign Up</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="create_account">Create Account</string>
     <string name="next">Next</string>
+    <string name="login">Login</string>
 
     <!-- Toasts & Errors (optional) -->
     <string name="error_empty_fields">Please fill in all fields</string>
