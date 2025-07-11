@@ -22,12 +22,12 @@
 
     <!-- Onboarding 1-->
     <string name="private_space">Private Space</string>
-    <string name="description_text1">"Express yourself without fear or judgment."</string>
+    <string name="description_text1">Express yourself without fear or judgment.</string>
     <string name="illustration">Illustration</string>
 
     <!-- Onboarding 2-->
-    <string name="mood_tracker">Mood Graph</string>
-    <string name="description_text2">Track daily emotions, notice changes, and recognize patterns in your mood.</string>
+    <string name="mood_tracker">Write with clarity</string>
+    <string name="description_text2">A clean design that helps you stay focused on what matters.</string>
 
     <!-- Onboarding 3-->
     <string name="search_diary">Search Diary</string>

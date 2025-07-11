@@ -50,20 +50,22 @@
         />
 
     <!-- Title Text -->
+
+    <!-- Description Text -->
+
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/manrope_bold"
         android:text="@string/mood_tracker"
         android:textColor="@color/black"
-        android:textSize="36sp"
-        app:layout_constraintTop_toBottomOf="@id/ivIllustration"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivIllustration" />
 
-    <!-- Description Text -->
     <TextView
         android:id="@+id/tvDescription"
         android:layout_width="0dp"
