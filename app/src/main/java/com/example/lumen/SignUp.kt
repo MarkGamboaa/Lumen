@@ -2,6 +2,7 @@ package com.example.lumen
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -40,14 +41,14 @@ class SignUp : AppCompatActivity() {
             val confirmPassword = etConfirmPassword.text.toString().trim()
             val email = "$username@lumen.com"
 
-            if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() ||
-                password.length < 6 || password != confirmPassword
+            if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty()
+                || password.length < 6 || password != confirmPassword
             ) {
-                Toast.makeText(this, "Please fill all fields and ensure passwords match", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Fill all fields and ensure passwords match", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Check if username already exists in Firestore
+            // Check if username is already taken
             db.collection("users")
                 .whereEqualTo("username", username)
                 .get()
@@ -58,8 +59,9 @@ class SignUp : AppCompatActivity() {
                         createFirebaseUser(email, password, username, firstName, lastName)
                     }
                 }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Error checking username", Toast.LENGTH_SHORT).show()
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Error checking username: ${e.message}", Toast.LENGTH_LONG).show()
+                    Log.e("FirestoreError", "Error checking username", e)
                 }
         }
 
