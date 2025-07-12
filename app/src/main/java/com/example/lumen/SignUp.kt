@@ -3,41 +3,45 @@ package com.example.lumen
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lumen.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class SignUp : AppCompatActivity() {
-
-    private lateinit var etFirstName: EditText
-    private lateinit var etLastName: EditText
-    private lateinit var etUsername: EditText
-    private lateinit var etPassword: EditText
-    private lateinit var etConfirmPassword: EditText
-    private lateinit var btnSignup: Button
-    private lateinit var btnGoToLogin: Button
+    private lateinit var binding: ActivitySignUpBinding
+//    private lateinit var etFirstName: EditText
+//    private lateinit var etLastName: EditText
+//    private lateinit var etUsername: EditText
+//    private lateinit var etPassword: EditText
+//    private lateinit var etConfirmPassword: EditText
+//    private lateinit var btnSignup: Button
+//    private lateinit var btnGoToLogin: Button
 
     private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
+        enableEdgeToEdge()
+        binding = ActivitySignUpBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        etFirstName = findViewById(R.id.etFirstName)
-        etLastName = findViewById(R.id.etLastName)
-        etUsername = findViewById(R.id.etUsername)
-        etPassword = findViewById(R.id.etPassword)
-        etConfirmPassword = findViewById(R.id.etConfirmPassword)
-        btnSignup = findViewById(R.id.btnSignup)
-        btnGoToLogin = findViewById(R.id.btnGoToLogin)
+//        etFirstName = findViewById(R.id.etFirstName)
+//        etLastName = findViewById(R.id.etLastName)
+//        etUsername = findViewById(R.id.etUsername)
+//        etPassword = findViewById(R.id.etPassword)
+//        etConfirmPassword = findViewById(R.id.etConfirmPassword)
+//        btnSignup = findViewById(R.id.btnSignup)
+//        btnGoToLogin = findViewById(R.id.btnGoToLogin)
 
-        btnSignup.setOnClickListener {
-            val firstName = etFirstName.text.toString().trim()
-            val lastName = etLastName.text.toString().trim()
-            val username = etUsername.text.toString().trim()
-            val password = etPassword.text.toString().trim()
-            val confirmPassword = etConfirmPassword.text.toString().trim()
+        binding.btnSignup.setOnClickListener {
+            val firstName = binding.etFirstName.text.toString().trim()
+            val lastName = binding.etLastName.text.toString().trim()
+            val username = binding.etUsername.text.toString().trim()
+            val password = binding.etPassword.text.toString().trim()
+            val confirmPassword = binding.etConfirmPassword.text.toString().trim()
             val email = "$username@lumen.com"
 
             if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() ||
@@ -63,7 +67,7 @@ class SignUp : AppCompatActivity() {
                 }
         }
 
-        btnGoToLogin.setOnClickListener {
+        binding.btnGoToLogin.setOnClickListener {
             startActivity(Intent(this, Login::class.java))
             finish()
         }
