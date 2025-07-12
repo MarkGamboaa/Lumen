@@ -9,20 +9,22 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.lumen.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class Login : AppCompatActivity() {
-
+    private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
-    private lateinit var etUsername: EditText
-    private lateinit var etPassword: EditText
-    private lateinit var btnLogin: Button
-    private lateinit var btnRegister: Button
+//    private lateinit var etUsername: EditText
+//    private lateinit var etPassword: EditText
+//    private lateinit var btnLogin: Button
+//    private lateinit var btnRegister: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -34,14 +36,14 @@ class Login : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         // Get references
-        etUsername = findViewById(R.id.etEmail)
-        etPassword = findViewById(R.id.etPassword)
-        btnLogin = findViewById(R.id.btnLogin)
-        btnRegister = findViewById(R.id.btnRegister)
+//        etUsername = findViewById(R.id.etEmail)
+//        etPassword = findViewById(R.id.etPassword)
+//        btnLogin = findViewById(R.id.btnLogin)
+//        btnRegister = findViewById(R.id.btnRegister)
 
-        btnLogin.setOnClickListener {
-            val username = etUsername.text.toString().trim()
-            val password = etPassword.text.toString().trim()
+        binding.btnLogin.setOnClickListener {
+            val username = binding.etEmail.text.toString().trim()
+            val password = binding.etPassword.text.toString().trim()
 
             if (username.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
@@ -61,7 +63,7 @@ class Login : AppCompatActivity() {
                 }
         }
 
-        btnRegister.setOnClickListener {
+        binding.btnRegister.setOnClickListener {
             startActivity(Intent(this, SignUp::class.java))
         }
     }
