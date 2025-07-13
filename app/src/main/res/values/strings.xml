@@ -22,6 +22,10 @@
     <string name="create_account">Create Account</string>
     <string name="next">Next</string>
     <string name="login">Login</string>
+    <string name="home">Home</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="settings">Settings</string>
+    <string name="profile">Profile</string>
 
     <!-- Toasts & Errors (optional) -->
     <string name="error_empty_fields">Please fill in all fields</string>
@@ -39,6 +43,8 @@
     <!-- Onboarding 3-->
     <string name="search_diary">Search Diary</string>
     <string name="description_text3">Effortlessly search your diary to relive a particular memory!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
