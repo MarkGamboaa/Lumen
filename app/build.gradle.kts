@@ -8,6 +8,10 @@ android {
     namespace = "com.example.lumen"
     compileSdk = 35
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.example.lumen"
         minSdk = 29
