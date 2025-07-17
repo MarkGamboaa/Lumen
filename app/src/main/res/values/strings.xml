@@ -21,7 +21,9 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="create_account">Create Account</string>
     <string name="next">Next</string>
+    <string name="back">Back</string>
     <string name="login">Login</string>
+    <string name="logout">Logout</string>
 
     <!-- Toasts & Errors (optional) -->
     <string name="error_empty_fields">Please fill in all fields</string>
