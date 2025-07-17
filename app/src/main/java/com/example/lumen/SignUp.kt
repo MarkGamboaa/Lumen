@@ -1,52 +1,42 @@
 package com.example.lumen
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lumen.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class SignUp : AppCompatActivity() {
-
-    private lateinit var etFirstName: EditText
-    private lateinit var etLastName: EditText
-    private lateinit var etUsername: EditText
-    private lateinit var etPassword: EditText
-    private lateinit var etConfirmPassword: EditText
-    private lateinit var btnSignup: Button
-    private lateinit var btnGoToLogin: Button
+    private lateinit var binding: ActivitySignUpBinding
 
     private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
+        binding = ActivitySignUpBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        etFirstName = findViewById(R.id.etFirstName)
-        etLastName = findViewById(R.id.etLastName)
-        etUsername = findViewById(R.id.etUsername)
-        etPassword = findViewById(R.id.etPassword)
-        etConfirmPassword = findViewById(R.id.etConfirmPassword)
-        btnSignup = findViewById(R.id.btnSignup)
-        btnGoToLogin = findViewById(R.id.btnGoToLogin)
-
-        btnSignup.setOnClickListener {
-            val firstName = etFirstName.text.toString().trim()
-            val lastName = etLastName.text.toString().trim()
-            val username = etUsername.text.toString().trim()
-            val password = etPassword.text.toString().trim()
-            val confirmPassword = etConfirmPassword.text.toString().trim()
+        binding.btnSignup.setOnClickListener {
+            val firstName = binding.etFirstName.text.toString().trim()
+            val lastName = binding.etLastName.text.toString().trim()
+            val username = binding.etUsername.text.toString().trim()
+            val password = binding.etPassword.text.toString().trim()
+            val confirmPassword = binding.etConfirmPassword.text.toString().trim()
             val email = "$username@lumen.com"
 
             if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() ||
-                password.length < 6 || password != confirmPassword
-            ) {
-                Toast.makeText(this, "Please fill all fields and ensure passwords match", Toast.LENGTH_SHORT).show()
+                password.isEmpty() || confirmPassword.isEmpty()) {
+                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-
+            if (password.length < 6 || password != confirmPassword) {
+                Toast.makeText(this, "Ensure password is at least 6 characters and passwords match", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
             // Check if username already exists in Firestore
             db.collection("users")
                 .whereEqualTo("username", username)
@@ -55,16 +45,19 @@ class SignUp : AppCompatActivity() {
                     if (!result.isEmpty) {
                         Toast.makeText(this, "Username already taken", Toast.LENGTH_SHORT).show()
                     } else {
+                        // Pass username, firstName, lastName to createFirebaseUser
                         createFirebaseUser(email, password, username, firstName, lastName)
+                        // The success toast and navigation is now handled in createFirebaseUser's success listener
                     }
                 }
                 .addOnFailureListener {
-                    Toast.makeText(this, "Error checking username", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Error checking username: ${it.message}", Toast.LENGTH_SHORT).show()
                 }
         }
 
-        btnGoToLogin.setOnClickListener {
-            startActivity(Intent(this, Login::class.java))
+        binding.btnGoToLogin.setOnClickListener {
+            // If user explicitly clicks "Go to Login" without signing up,
+            // just finish this activity. LoginActivity is already on the back stack.
             finish()
         }
     }
@@ -72,13 +65,13 @@ class SignUp : AppCompatActivity() {
     private fun createFirebaseUser(
         email: String,
         password: String,
-        username: String,
-        firstName: String,
-        lastName: String
+        username: String, // Added username
+        firstName: String, // Added firstName
+        lastName: String // Added lastName
     ) {
         auth.createUserWithEmailAndPassword(email, password)
-            .addOnSuccessListener { result ->
-                val uid = result.user?.uid ?: return@addOnSuccessListener
+            .addOnSuccessListener { authResult -> // Renamed from result to authResult for clarity
+                val uid = authResult.user?.uid ?: return@addOnSuccessListener // Use authResult
                 val userData = mapOf(
                     "uid" to uid,
                     "username" to username,
@@ -87,16 +80,20 @@ class SignUp : AppCompatActivity() {
                 )
                 db.collection("users").document(uid).set(userData)
                     .addOnSuccessListener {
-                        Toast.makeText(this, "Signup successful!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, Login::class.java))
-                        finish()
+                        // ---- THIS IS THE KEY CHANGE for going back with a result ----
+                        val resultIntent = Intent()
+                        resultIntent.putExtra("SIGN_UP_SUCCESS", true) // Send a flag
+                        setResult(Activity.RESULT_OK, resultIntent)
+                        finish() // This will now return to LoginActivity's onActivityResult
+                        // Toast is now displayed in LoginActivity
                     }
-                    .addOnFailureListener {
-                        Toast.makeText(this, "Failed to save user info", Toast.LENGTH_SHORT).show()
+                    .addOnFailureListener { e -> // Added e for exception
+                        Toast.makeText(this, "Failed to save user info: ${e.message}", Toast.LENGTH_SHORT)
+                            .show()
                     }
             }
-            .addOnFailureListener {
-                Toast.makeText(this, "Signup failed: ${it.message}", Toast.LENGTH_SHORT).show()
+            .addOnFailureListener { e -> // Added e for exception
+                Toast.makeText(this, "Signup failed: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
 }

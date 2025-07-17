@@ -1,47 +1,43 @@
-package com.example.lumen
+package com.example.lumen // Or your actual package name
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.lumen.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 
-class Login : AppCompatActivity() {
+const val SIGN_UP_REQUEST_CODE = 1001
+const val SIGN_UP_SUCCESSFUL_RESULT_CODE = 1
 
+class Login : AppCompatActivity() {
+    private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
-    private lateinit var etUsername: EditText
-    private lateinit var etPassword: EditText
-    private lateinit var btnLogin: Button
-    private lateinit var btnRegister: Button
+
+    private val signUpActivityResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val signUpSuccess = result.data?.getBooleanExtra("SIGN_UP_SUCCESS", false) ?: false
+                if (signUpSuccess) {
+                    Toast.makeText(this, "Account Created! Please log in.", Toast.LENGTH_LONG).show()
+                }
+            }
+            // You could also handle other result codes here if needed (e.g., SIGN_UP_CANCELLED)
+        }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
-        // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
-        // Get references
-        etUsername = findViewById(R.id.etEmail)
-        etPassword = findViewById(R.id.etPassword)
-        btnLogin = findViewById(R.id.btnLogin)
-        btnRegister = findViewById(R.id.btnRegister)
-
-        btnLogin.setOnClickListener {
-            val username = etUsername.text.toString().trim()
-            val password = etPassword.text.toString().trim()
+        binding.btnLogin.setOnClickListener {
+            val username = binding.etUsername.text.toString().trim()
+            val password = binding.etPassword.text.toString().trim()
 
             if (username.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
@@ -54,15 +50,23 @@ class Login : AppCompatActivity() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
-                        // TODO: Redirect to main/home screen
+                        val intent = Intent(this, NotesActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     } else {
-                        Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            "Login failed: ${task.exception?.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
         }
 
-        btnRegister.setOnClickListener {
-            startActivity(Intent(this, SignUp::class.java))
+        // When "Sign Up" button/text is clicked
+        binding.btnRegister.setOnClickListener { // Assuming you have a button with id btnGoToSignUp
+            val intent = Intent(this, SignUp::class.java)
+            signUpActivityResultLauncher.launch(intent) // Use the new launcher
         }
     }
 }
