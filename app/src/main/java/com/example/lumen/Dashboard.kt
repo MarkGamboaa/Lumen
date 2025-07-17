@@ -7,10 +7,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.fragment.app.Fragment
-import com.example.lumen.ui.dashboardFragment
+import com.example.lumen.ui.dairyFragment
 import com.example.lumen.ui.homeFragment
 import com.example.lumen.ui.profileFragment
-import com.example.lumen.ui.settingsFragment
+import com.example.lumen.ui.searchFragment
 
 class Dashboard : AppCompatActivity() {
     private lateinit var navview: BottomNavigationView
@@ -30,8 +30,8 @@ class Dashboard : AppCompatActivity() {
         navview.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.navigationHome -> replace(homeFragment())
-                R.id.navigationDashboard -> replace(dashboardFragment())
-                R.id.navigationSettings -> replace(settingsFragment())
+                R.id.navigationDashboard -> replace(dairyFragment())
+                R.id.navigationSettings -> replace(searchFragment())
                 R.id.navigationProfile -> replace(profileFragment())
                 else -> false
             }
