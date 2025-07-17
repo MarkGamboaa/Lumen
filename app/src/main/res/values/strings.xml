@@ -13,7 +13,8 @@
     <string name="hint_username">User name</string>
     <string name="hint_password">Password</string>
     <string name="hint_confirm_password">Confirm Password</string>
-
+    <string name="note_title">Title your memory…</string>
+    <string name="note_content">Describe what happened today…</string>
 
     <!-- Form Labels & Buttons -->
     <string name="btn_sign_in">Sign in</string>
@@ -24,6 +25,7 @@
     <string name="back">Back</string>
     <string name="login">Login</string>
     <string name="logout">Logout</string>
+
 
     <!-- Toasts & Errors (optional) -->
     <string name="error_empty_fields">Please fill in all fields</string>
