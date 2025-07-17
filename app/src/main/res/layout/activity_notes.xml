@@ -26,7 +26,6 @@
         android:layout_height="match_parent"
         android:id="@+id/rvNotes"
         android:scrollbars="vertical">
-
     </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>
