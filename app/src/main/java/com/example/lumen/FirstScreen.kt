@@ -6,23 +6,24 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.lumen.databinding.ActivityFirstScreenBinding
 
 class FirstScreen : AppCompatActivity() {
-    private lateinit var binding: ActivityFirstScreenBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityFirstScreenBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_first_screen)
+
+        val mainView = findViewById<android.view.View>(R.id.main)
+
         // Handle system insets
-        ViewCompat.setOnApplyWindowInsetsListener(/* view = */ binding.main) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(mainView) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        binding.main.setOnClickListener {
+
+        // Set click listener to go to next screen
+        mainView.setOnClickListener {
             val intent = Intent(this, Onboarding1::class.java)
             startActivity(intent)
             finish()

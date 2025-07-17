@@ -2,57 +2,52 @@ package com.example.lumen
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.*
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.lumen.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class SignUp : AppCompatActivity() {
-    private lateinit var binding: ActivitySignUpBinding
-//    private lateinit var etFirstName: EditText
-//    private lateinit var etLastName: EditText
-//    private lateinit var etUsername: EditText
-//    private lateinit var etPassword: EditText
-//    private lateinit var etConfirmPassword: EditText
-//    private lateinit var btnSignup: Button
-//    private lateinit var btnGoToLogin: Button
+
+    private lateinit var etFirstName: EditText
+    private lateinit var etLastName: EditText
+    private lateinit var etUsername: EditText
+    private lateinit var etPassword: EditText
+    private lateinit var etConfirmPassword: EditText
+    private lateinit var btnSignup: Button
+    private lateinit var btnGoToLogin: Button
 
     private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        binding = ActivitySignUpBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_sign_up)
 
-//        etFirstName = findViewById(R.id.etFirstName)
-//        etLastName = findViewById(R.id.etLastName)
-//        etUsername = findViewById(R.id.etUsername)
-//        etPassword = findViewById(R.id.etPassword)
-//        etConfirmPassword = findViewById(R.id.etConfirmPassword)
-//        btnSignup = findViewById(R.id.btnSignup)
-//        btnGoToLogin = findViewById(R.id.btnGoToLogin)
+        etFirstName = findViewById(R.id.etFirstName)
+        etLastName = findViewById(R.id.etLastName)
+        etUsername = findViewById(R.id.etUsername)
+        etPassword = findViewById(R.id.etPassword)
+        etConfirmPassword = findViewById(R.id.etConfirmPassword)
+        btnSignup = findViewById(R.id.btnSignup)
+        btnGoToLogin = findViewById(R.id.btnGoToLogin)
 
-        binding.btnSignup.setOnClickListener {
-            val firstName = binding.etFirstName.text.toString().trim()
-            val lastName = binding.etLastName.text.toString().trim()
-            val username = binding.etUsername.text.toString().trim()
-            val password = binding.etPassword.text.toString().trim()
-            val confirmPassword = binding.etConfirmPassword.text.toString().trim()
+        btnSignup.setOnClickListener {
+            val firstName = etFirstName.text.toString().trim()
+            val lastName = etLastName.text.toString().trim()
+            val username = etUsername.text.toString().trim()
+            val password = etPassword.text.toString().trim()
+            val confirmPassword = etConfirmPassword.text.toString().trim()
             val email = "$username@lumen.com"
 
-            if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty()
-                || password.length < 6 || password != confirmPassword
+            if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() ||
+                password.length < 6 || password != confirmPassword
             ) {
-                Toast.makeText(this, "Fill all fields and ensure passwords match", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please fill all fields and ensure passwords match", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Check if username is already taken
+            // Check if username already exists in Firestore
             db.collection("users")
                 .whereEqualTo("username", username)
                 .get()
@@ -63,13 +58,12 @@ class SignUp : AppCompatActivity() {
                         createFirebaseUser(email, password, username, firstName, lastName)
                     }
                 }
-                .addOnFailureListener { e ->
-                    Toast.makeText(this, "Error checking username: ${e.message}", Toast.LENGTH_LONG).show()
-                    Log.e("FirestoreError", "Error checking username", e)
+                .addOnFailureListener {
+                    Toast.makeText(this, "Error checking username", Toast.LENGTH_SHORT).show()
                 }
         }
 
-        binding.btnGoToLogin.setOnClickListener {
+        btnGoToLogin.setOnClickListener {
             startActivity(Intent(this, Login::class.java))
             finish()
         }
