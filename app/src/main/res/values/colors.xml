@@ -24,9 +24,14 @@
     <color name="shadow_navy">#1E3A5F</color>
     <color name="page_white">#FFFFFF</color>
 
-    <!-- Optional: Dark Mode Support -->
-    <color name="dark_bg">#0F172A</color>
-    <color name="dark_text">#F1F5F9</color>
-    <color name="dark_input_bg">#1E293B</color>
-    <color name="dark_accent_yellow">#FACC15</color>
+    <!-- Note Backgrounds -->
+    <color name="note_bg_1">#FFF9C4</color>
+    <color name="note_bg_2">#B2EBF2</color>
+    <color name="note_bg_3">#FFCCBC</color>
+    <color name="note_bg_4">#C8E6C9</color>
+    <color name="note_bg_5">#D1C4E9</color>
+    <color name="note_bg_6">#FFE0B2</color>
+    <color name="note_bg_7">#F8BBD0</color>
+    <color name="note_bg_8">#B3E5FC</color>
+
 </resources>
