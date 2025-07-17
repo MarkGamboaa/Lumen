@@ -12,17 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lumen"
         tools:targetApi="31">
-
-        <!-- This is now your launcher activity -->
+        <activity
+            android:name=".CreateNote"
+            android:exported="false" />
+        <activity
+            android:name=".NotesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" /> <!-- This is now your launcher activity -->
         <activity
             android:name=".FirstScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".SignUp"
             android:exported="false" />
@@ -37,9 +44,7 @@
             android:exported="false" />
         <activity
             android:name=".Onboarding1"
-            android:exported="false" />
-        <!-- No need to declare FirstScreen again if it's already above -->
-
+            android:exported="false" /> <!-- No need to declare FirstScreen again if it's already above -->
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
