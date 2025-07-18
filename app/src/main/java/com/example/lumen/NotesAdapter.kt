@@ -1,58 +1,55 @@
-package com.example.lumen // Make sure this package matches where you want the file
+package com.example.lumen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lumen.databinding.ItemNoteBinding
-import java.text.SimpleDateFormat
-import java.util.Locale
+
 
 class NotesAdapter(
     private var notesList: List<Note>,
-    private val onItemClicked: (Note) -> Unit // Lambda to handle item clicks
+    private val onItemClicked: (Note) -> Unit
 ) : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
 
-    // 2. ViewHolder Class
-    class NoteViewHolder(private val binding: ItemNoteBinding) : RecyclerView.ViewHolder(binding.root) {
-        // Helper to format the timestamp
-        private val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
+    // Default color resource if a note somehow doesn't have one
+    private val defaultColorRes = R.color.note_bg_1 // Or any of your note_bg_x colors
 
-        fun bind(note: Note, clickListener: (Note) -> Unit) {
+    inner class NoteViewHolder(private val binding: ItemNoteBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(note: Note) {
             binding.tvNoteTitle.text = note.title
-            binding.tvNoteContentSnippet.text = note.getContentSnippet(80) // Display a snippet (e.g., 80 chars)
-            binding.tvNoteTimestamp.text = note.timestamp?.toDate()?.let {
-                dateFormat.format(it)
-            } ?: "No date" // Handle null timestamp
+            binding.tvNoteTimestamp.text = note.timestamp?.toDate()?.toString() // Format properly
+            binding.tvNoteContentSnippet.text = note.getContentSnippet()
 
-            // Set the click listener for the entire item
-            binding.root.setOnClickListener {
-                clickListener(note)
+            val cardView = binding.root // This is your CardView
+
+            note.colorResId?.let { colorResource ->
+                // Use the color resource ID stored in the note object
+                cardView.setCardBackgroundColor(ContextCompat.getColor(binding.root.context, colorResource))
+            } ?: run {
+                // No color resource ID stored (e.g., for older notes or if null), use a default
+                cardView.setCardBackgroundColor(ContextCompat.getColor(binding.root.context, defaultColorRes))
             }
+
+            binding.root.setOnClickListener { onItemClicked(note) }
         }
     }
 
-    // 3. onCreateViewHolder: Inflates the item layout and creates the ViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
-        val binding = ItemNoteBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
+        val binding = ItemNoteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NoteViewHolder(binding)
     }
 
-    // 4. onBindViewHolder: Binds data from a Note object to the ViewHolder's views
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
-        val currentNote = notesList[position]
-        holder.bind(currentNote, onItemClicked) // Pass the note and the click listener
+        holder.bind(notesList[position])
     }
 
-    // 5. getItemCount: Returns the total number of items in the list
     override fun getItemCount(): Int = notesList.size
 
-    // 6. (Optional but Recommended) Method to update the adapter's data
     fun updateNotes(newNotes: List<Note>) {
         notesList = newNotes
-        notifyDataSetChanged() // Basic refresh. Consider DiffUtil for better performance.
+        // HIGHLY recommend using DiffUtil here
+        notifyDataSetChanged()
     }
 }

@@ -3,11 +3,12 @@ package com.example.lumen
 import com.google.firebase.Timestamp
 
 data class Note(
-    val id: String = "", // Document ID
+    val id: String = "",
     val title: String = "",
     val content: String = "",
-    val timestamp: Timestamp? = null, // Firebase Timestamp
-    val user_id: String = ""
+    val timestamp: Timestamp? = null,
+    val user_id: String = "",
+    var colorResId: Int? = null // Store the R.color resource ID
 ) {
     fun getContentSnippet(maxLength: Int = 100): String {
         return if (content.length > maxLength) {

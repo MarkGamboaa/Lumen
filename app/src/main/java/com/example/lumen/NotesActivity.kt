@@ -44,7 +44,8 @@ class NotesActivity : AppCompatActivity() {
                                 title = document.getString("title") ?: "No Title",
                                 content = document.getString("content") ?: "",
                                 timestamp = document.getTimestamp("timestamp"),
-                                user_id = document.getString("user_id") ?: ""
+                                user_id = document.getString("user_id") ?: "",
+                                colorResId = (document.get("colorResId") as? Long)?.toInt()
                             )
                         } else {
                             null
