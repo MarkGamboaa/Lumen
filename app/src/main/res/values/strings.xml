@@ -47,6 +47,7 @@
     <!-- Onboarding 3-->
     <string name="search_diary">Search Diary</string>
     <string name="description_text3">Effortlessly search your diary to relive a particular memory!</string>
+    <string name="no_notes">No notes yet.</string>
 
     <!--  Names  -->
     <string name="Mark">Mark Gerard G. Gamboa</string>
