@@ -29,5 +29,9 @@ class NotesActivity : AppCompatActivity() {
             // Placeholder for future note click handling
             // You can implement note viewing/editing functionality here
         }
+        binding.aboutButton.setOnClickListener {
+            val intent = Intent(this, AboutActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

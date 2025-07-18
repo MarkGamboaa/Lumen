@@ -47,7 +47,10 @@
             android:exported="false" />
         <activity
             android:name=".Onboarding1"
-            android:exported="false" /> <!-- No need to declare FirstScreen again if it's already above -->
+            android:exported="false" />
+        <activity
+            android:name=".AboutActivity"
+            android:exported="false" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
