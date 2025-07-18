@@ -1,70 +1,71 @@
 <resources>
-    <!-- App Name -->
-    <string name="app_name">Lumen</string>
 
-    <!--Titles -->
+    <!-- App Metadata -->
+    <string name="app_name">Lumen</string>
+    <string name="version">Version 1.0</string>
+
+    <!-- Titles -->
+    <string name="login_title_create_account">Create Account</string>
     <string name="login_title_line1">Lumen</string>
     <string name="login_title_line2">Light Up Your Mind</string>
-    <string name="login_title_create_account">Create Account</string>
 
-    <!-- Form Hints -->
-    <string name="hint_lastname">Last name</string>
-    <string name="hint_firstName">First name</string>
-    <string name="hint_username">User name</string>
-    <string name="hint_password">Password</string>
-    <string name="hint_confirm_password">Confirm Password</string>
-
-
-    <!-- Form Labels & Buttons -->
-    <string name="note_title">Title your memory…</string>
-    <string name="note_content">Describe what happened today…</string>
-    <string name="btn_sign_in">Sign in</string>
-    <string name="btn_sign_up">Sign Up</string>
-    <string name="forgot_password">Forgot Password?</string>
-    <string name="create_account">Create Account</string>
-    <string name="next">Next</string>
-    <string name="back">Back</string>
-    <string name="login">Login</string>
-    <string name="logout">Logout</string>
-    <string name="about">About</string>
-    <string name="save">Save</string>
-    <string name="add">Add note</string>
-    <string name="delete">Delete</string>
-    <string name="team_title">The Team</string>
-    <string name="version">Version 1.0</string>
-    <string name="about_title">About Lumen</string>
-    <string name="about_desc">Light Up Your Mind with Lumen your daily dairy to capture memories, thoughts, and feelings, turning ordinary moments into meaningful reflections.</string>
-
-
-    <string name="edit_note">Edit your memory</string>
-    <string name="edit_title">Edit Title</string>
-    <string name="edit_content">Edit Content</string>
-
-
-    <!-- Toasts & Errors (optional) -->
-    <string name="error_empty_fields">Please fill in all fields</string>
-    <string name="error_invalid_credentials">Invalid email or password</string>
-
-    <!-- Onboarding 1-->
+    <!-- Onboarding Texts -->
+    <!-- Onboarding 1 -->
     <string name="private_space">Private Space</string>
     <string name="description_text1">Express yourself without fear or judgment.</string>
-    <string name="illustration">Illustration</string>
 
-    <!-- Onboarding 2-->
+    <!-- Onboarding 2 -->
     <string name="mood_tracker">Write with clarity</string>
     <string name="description_text2">A clean design that helps you stay focused on what matters.</string>
 
-    <!-- Onboarding 3-->
+    <!-- Onboarding 3 -->
     <string name="search_diary">Memory Lane</string>
-    <string name="description_text3">Take a stroll down memory lane and revisit the thoughts and feelings you\'ve captured.</string>
+    <string name="description_text3">Take a stroll down memory lane and revisit the thoughts and feelings you've captured.</string>
 
+    <!-- Note Editing -->
+    <string name="edit_content">Edit Content</string>
+    <string name="edit_note">Edit your memory</string>
+    <string name="edit_title">Edit Title</string>
 
+    <!-- Form Hints -->
+    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="hint_firstName">First name</string>
+    <string name="hint_lastname">Last name</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_username">User name</string>
+
+    <!-- Form Labels & Buttons -->
+    <string name="about">About</string>
+    <string name="add">Add note</string>
+    <string name="back">Back</string>
+    <string name="btn_sign_in">Sign in</string>
+    <string name="btn_sign_up">Sign Up</string>
+    <string name="create_account">Create Account</string>
+    <string name="delete">Delete</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="next">Next</string>
+    <string name="note_content">Describe what happened today…</string>
+    <string name="note_title">Title your memory…</string>
+    <string name="save">Save</string>
+
+    <!-- Static About Page -->
+    <string name="about_desc">Light Up Your Mind with Lumen your daily diary to capture memories, thoughts, and feelings, turning ordinary moments into meaningful reflections.</string>
+    <string name="about_title">About Lumen</string>
+    <string name="team_title">The Team</string>
+
+    <!-- Toasts & Error Messages -->
+    <string name="error_empty_fields">Please fill in all fields</string>
+    <string name="error_invalid_credentials">Invalid email or password</string>
     <string name="no_notes">Your diary is waiting. Add your first memory.</string>
 
-    <!--  Names  -->
-    <string name="Mark">Mark Gerard G. Gamboa</string>
-    <string name="Ronn">Ronn Saimund U. Rosarito</string>
-    <string name="Quervie">Quervie B. Manrique</string>
+    <!-- Misc -->
+    <string name="illustration">Illustration</string>
 
+    <!-- Team Member Names -->
+    <string name="Mark">Mark Gerard G. Gamboa</string>
+    <string name="Quervie">Quervie B. Manrique</string>
+    <string name="Ronn">Ronn Saimund U. Rosarito</string>
 
 </resources>

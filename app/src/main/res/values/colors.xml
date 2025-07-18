@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- System Default Palette -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -8,23 +10,24 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#F44336</color>
-    <!-- Primary Brand Colors -->
+
+    <!-- Brand Identity -->
     <color name="primary_yellow">#FFDE59</color>
 
-    <!-- Backgrounds -->
+    <!-- Background Colors -->
     <color name="background_light">#669fc4</color>
     <color name="background_dark">#1E3A5F</color>
+    <color name="page_white">#FFFFFF</color>
 
     <!-- Text Colors -->
     <color name="text_primary">#1E3A5F</color>
     <color name="text_secondary">#4B5563</color>
     <color name="text_light">#FFFFFF</color>
 
-    <!-- Shadows and Borders -->
+    <!-- Accents, Shadows, Borders -->
     <color name="shadow_navy">#1E3A5F</color>
-    <color name="page_white">#FFFFFF</color>
 
-    <!-- Note Backgrounds -->
+    <!-- Note Card Backgrounds -->
     <color name="note_bg_1">#FFF9C4</color>
     <color name="note_bg_2">#B2EBF2</color>
     <color name="note_bg_3">#FFCCBC</color>
