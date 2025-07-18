@@ -77,7 +77,6 @@ class NotesActivity : AppCompatActivity() {
                 Toast.makeText(this, "Error loading notes: ${e.message}", Toast.LENGTH_LONG).show()
                 binding.rvNotes.visibility = View.GONE
                 binding.tvEmptyNotes.visibility = View.VISIBLE
-                binding.tvEmptyNotes.text = "Error loading notes. Please try again."
             }
     }
 
