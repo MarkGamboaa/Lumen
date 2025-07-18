@@ -27,10 +27,19 @@
     <string name="login">Login</string>
     <string name="logout">Logout</string>
     <string name="about">About</string>
+    <string name="save">Save</string>
+    <string name="add">Add note</string>
+    <string name="delete">Delete</string>
     <string name="team_title">The Team</string>
     <string name="version">Version 1.0</string>
     <string name="about_title">About Lumen</string>
     <string name="about_desc">Light Up Your Mind with Lumen your daily dairy to capture memories, thoughts, and feelings, turning ordinary moments into meaningful reflections.</string>
+
+
+    <string name="edit_note">Edit your memory</string>
+    <string name="edit_title">Edit Title</string>
+    <string name="edit_content">Edit Content</string>
+
 
     <!-- Toasts & Errors (optional) -->
     <string name="error_empty_fields">Please fill in all fields</string>
@@ -46,8 +55,10 @@
     <string name="description_text2">A clean design that helps you stay focused on what matters.</string>
 
     <!-- Onboarding 3-->
-    <string name="search_diary">Search Diary</string>
-    <string name="description_text3">Effortlessly search your diary to relive a particular memory!</string>
+    <string name="search_diary">Memory Lane</string>
+    <string name="description_text3">Take a stroll down memory lane and revisit the thoughts and feelings you\'ve captured.</string>
+
+
     <string name="no_notes">Your diary is waiting. Add your first memory.</string>
 
     <!--  Names  -->

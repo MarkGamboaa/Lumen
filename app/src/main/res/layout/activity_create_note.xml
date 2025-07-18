@@ -6,17 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CreateNote">
-    <ImageButton
-        android:id="@+id/logoutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_logout"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/logout"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
 
     <LinearLayout
         android:id="@+id/header"
@@ -50,46 +39,38 @@
     </LinearLayout>
 
 
-    <androidx.appcompat.widget.Toolbar
+    <EditText
+        android:id="@+id/createNoteTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/toolBarOfCreateNote"
-        android:background="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/header"
+        android:layout_margin="5sp"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+        android:hint="@string/note_title"
+        android:paddingTop="12dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="12dp"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:hint="@string/note_title"
-            android:id="@+id/createNoteTitle"
-            android:fontFamily="@font/poppins_bold"
-            >
-        </EditText>
-
-    </androidx.appcompat.widget.Toolbar>
+        app:layout_constraintTop_toBottomOf="@+id/header" />
 
     <EditText
+        android:id="@+id/createNoteContent"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:padding="15dp"
-        android:textSize="15sp"
+        android:layout_margin="5sp"
         android:fontFamily="@font/poppins_medium"
-        android:textColor="@color/black"
-        android:hint="@string/note_content"
         android:gravity="top|left"
-        android:id="@+id/createNoteContent"
-        app:layout_constraintTop_toBottomOf="@id/toolBarOfCreateNote"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:hint="@string/note_content"
+        android:padding="15dp"
+        android:textColor="@color/black"
+        android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@id/saveNoteFAB"
-        tools:ignore="RtlHardcoded">
-    </EditText>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createNoteTitle"
+        tools:ignore="RtlHardcoded" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
@@ -103,6 +84,7 @@
         android:backgroundTint="@color/primary_yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/save"
         >
 
     </com.google.android.material.floatingactionbutton.FloatingActionButton>

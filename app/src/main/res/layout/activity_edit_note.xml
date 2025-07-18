@@ -39,59 +39,53 @@
     </LinearLayout>
 
 
-    <androidx.appcompat.widget.Toolbar
+    <TextView
+        android:id="@+id/editMemoryLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/toolBarOfEditNote"
-        android:background="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/header"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
+        android:text="@string/edit_note"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/editMemoryLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Edit your memory"
-                android:fontFamily="@font/poppins_medium"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="12dp" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="12dp"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:id="@+id/editNoteTitle"
-                android:fontFamily="@font/poppins_bold" />
-        </LinearLayout>
-    </androidx.appcompat.widget.Toolbar>
+        app:layout_constraintTop_toBottomOf="@+id/header" />
 
     <EditText
+        android:id="@+id/editNoteTitle"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:padding="15dp"
-        android:textSize="15sp"
-        android:fontFamily="@font/poppins_medium"
+        android:layout_height="wrap_content"
+        android:paddingTop="12dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:hint="@string/edit_title"
         android:textColor="@color/black"
-        android:gravity="top|left"
-        android:id="@+id/editNoteContent"
-        app:layout_constraintTop_toBottomOf="@id/toolBarOfEditNote"
+        android:fontFamily="@font/poppins_bold"
+        android:layout_margin="5sp"
+        app:layout_constraintTop_toBottomOf="@id/editMemoryLabel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <EditText
+        android:id="@+id/editNoteContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="5sp"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="top|left"
+        android:hint="@string/edit_content"
+        android:padding="15dp"
+        android:textColor="@color/black"
+        android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@id/saveNoteFAB"
-        tools:ignore="RtlHardcoded">
-    </EditText>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editNoteTitle"
+        tools:ignore="RtlHardcoded" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
@@ -101,6 +95,7 @@
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="30dp"
         android:id="@+id/saveNoteFAB"
+        android:contentDescription="@string/save"
         android:src="@drawable/ic_save"
         android:backgroundTint="@color/primary_yellow"
         app:layout_constraintBottom_toBottomOf="parent"

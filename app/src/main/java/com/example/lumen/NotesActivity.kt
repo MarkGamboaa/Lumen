@@ -31,7 +31,6 @@ class NotesActivity : AppCompatActivity() {
                 if (result.isEmpty) {
                     binding.rvNotes.visibility = View.GONE
                     binding.tvEmptyNotes.visibility = View.VISIBLE
-                    binding.tvEmptyNotes.text = "No notes found. Create one!"
                 } else {
                     binding.rvNotes.visibility = View.VISIBLE
                     binding.tvEmptyNotes.visibility = View.GONE
