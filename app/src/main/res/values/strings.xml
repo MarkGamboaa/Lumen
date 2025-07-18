@@ -20,7 +20,7 @@
 
     <!-- Onboarding 3 -->
     <string name="search_diary">Memory Lane</string>
-    <string name="description_text3">Take a stroll down memory lane and revisit the thoughts and feelings you've captured.</string>
+    <string name="description_text3">Take a stroll down memory lane and revisit the thoughts and feelings you\'ve captured.</string>
 
     <!-- Note Editing -->
     <string name="edit_content">Edit Content</string>
