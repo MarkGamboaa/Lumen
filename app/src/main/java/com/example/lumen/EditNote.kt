@@ -39,6 +39,10 @@ class EditNote : AppCompatActivity() {
             val title = binding.editNoteTitle.text.toString()
             val content = binding.editNoteContent.text.toString()
             // val userIdValue = auth.currentUser?.uid // Get current user's ID if needed
+            if (title.isEmpty() || content.isEmpty()) {
+                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             if (currentNoteId == null) {
                 Toast.makeText(this, "Error: Note ID is missing. Cannot update.", Toast.LENGTH_LONG).show()
