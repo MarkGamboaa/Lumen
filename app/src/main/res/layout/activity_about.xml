@@ -92,25 +92,26 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
             android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp">
+            android:layout_marginEnd="12dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
                 android:layout_width="96dp"
                 android:layout_height="96dp"
-                android:src="@drawable/ronn"
                 android:contentDescription="@string/Ronn"
-                />
+                android:src="@drawable/ronn" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Ronn"
-                android:gravity="center"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppins_medium"
-                android:textSize="14sp"
-                android:layout_marginTop="8dp"/>
+                android:gravity="center"
+                android:text="@string/Ronn"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <LinearLayout
