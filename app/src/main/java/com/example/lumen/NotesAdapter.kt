@@ -3,7 +3,7 @@ package com.example.lumen // Make sure this package matches where you want the f
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lumen.databinding.ActivityItemNoteBinding
+import com.example.lumen.databinding.ItemNoteBinding
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -13,7 +13,7 @@ class NotesAdapter(
 ) : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
 
     // 2. ViewHolder Class
-    class NoteViewHolder(private val binding: ActivityItemNoteBinding) : RecyclerView.ViewHolder(binding.root) {
+    class NoteViewHolder(private val binding: ItemNoteBinding) : RecyclerView.ViewHolder(binding.root) {
         // Helper to format the timestamp
         private val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
 
@@ -33,7 +33,7 @@ class NotesAdapter(
 
     // 3. onCreateViewHolder: Inflates the item layout and creates the ViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
-        val binding = ActivityItemNoteBinding.inflate(
+        val binding = ItemNoteBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
