@@ -57,8 +57,13 @@ class NotesActivity : AppCompatActivity() {
                     } else {
                         notesAdapter = NotesAdapter(notesList) { clickedNote ->
                             // Handle note click, e.g., open detail activity
+                            val bundle = Bundle()
+                            bundle.putString("note_id", clickedNote.id)
+                            bundle.putString("note_title", clickedNote.title)
+                            bundle.putString("note_content", clickedNote.content)
+
                             val intent = Intent(this, NoteDetails::class.java) // Or your detail activity
-                            intent.putExtra("NOTE_ID", clickedNote.id) // Pass note ID
+                            intent.putExtras(bundle)
                             // You might want to pass other details or fetch fresh in the next activity
                             startActivity(intent)
                         }
@@ -88,21 +93,25 @@ class NotesActivity : AppCompatActivity() {
             insets
         }
 
-        // Initialize RecyclerView and Adapter here if not done in displayNotes first call
-        // If displayNotes might not be called immediately, setup with empty list:
-        notesAdapter = NotesAdapter(emptyList()) { clickedNote ->
-            val intent = Intent(this, CreateNote::class.java) // Or your detail activity
-            intent.putExtra("NOTE_ID", clickedNote.id)
-            startActivity(intent)
-        }
-        binding.rvNotes.adapter = notesAdapter
-        binding.rvNotes.layoutManager = LinearLayoutManager(this)
-
-
         binding.noteFAB.setOnClickListener {
             val intent = Intent(this, CreateNote::class.java)
             startActivity(intent)
         }
+        binding.logoutButton.setOnClickListener {
+            auth.signOut()
+
+            // Show the Toast message
+            Toast.makeText(this, "Logout successfully", Toast.LENGTH_SHORT).show()
+
+            // Navigate to Login activity
+            val intent = Intent(this, Login::class.java)
+            // Optional: Clear the task stack so the user can't go back to NotesActivity
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish() // Finish NotesActivity
+        }
+
+
 
         // Fetch notes when the activity is created (or resumed)
         auth.currentUser?.uid?.let { user_id ->
@@ -120,7 +129,6 @@ class NotesActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
     override fun onResume() {
         super.onResume()
         // Refresh notes when the activity resumes, in case new notes were added
