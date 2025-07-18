@@ -19,7 +19,10 @@ class NotesAdapter(
 
         fun bind(note: Note) {
             binding.tvNoteTitle.text = note.title
-            binding.tvNoteTimestamp.text = note.timestamp?.toDate()?.toString() // Format properly
+            val dateFormat = android.icu.text.SimpleDateFormat("MMM dd, yyyy", java.util.Locale.getDefault()) // Use fully qualified names
+            binding.tvNoteTimestamp.text = note.timestamp?.toDate()?.let { date -> // 'date' is the non-null java.util.Date
+                dateFormat.format(date)
+            } ?: "No date" // Pr
             binding.tvNoteContentSnippet.text = note.getContentSnippet()
 
             val cardView = binding.root // This is your CardView
