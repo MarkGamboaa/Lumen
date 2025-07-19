@@ -45,7 +45,6 @@ class CreateNote : AppCompatActivity() {
         return hashMapOf(
             "user_id" to userId,
             "title" to title,
-            "description" to "", // You can add a description EditText and replace this
             "content" to content,
             "timestamp" to FieldValue.serverTimestamp(), // Firestore server timestamp
             "colorResId" to chosenColorResId // Add the colorResId
